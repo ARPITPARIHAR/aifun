@@ -18,9 +18,9 @@
 	<div class="container">
 		<div class="row">
             @foreach (App\Models\PracticeArea::orderBy('title')->get() as $key=>$practice_area)
-			<div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="col-lg-3 col-md-4 col-sm-6">
 				<div class="prctc_bx">
-					<a href="#">
+					<a href="{{ route('practice-area.show',$practice_area->slug) }}">
 					<div class="prctc_icn"><img src="{{asset($practice_area->icon)}}" alt="{{$practice_area->title}}"></div>
 					<h3>{{$practice_area->title}}</h3></a>
 				</div>

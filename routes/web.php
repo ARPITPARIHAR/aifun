@@ -12,8 +12,9 @@ use App\Http\Controllers\Frontend\OnlineConsultantController;
 use App\Http\Middleware\isDisclaimer;
 use Illuminate\Support\Facades\Artisan;
 
-Route::get('/artisan', function () {
+Route::get('/clear', function () {
     Artisan::call('storage:link');
+    dd('Done');
 });
 
 Route::controller(PageController::class)->group(function () {
