@@ -10,6 +10,11 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\PracticeAreaController;
 use App\Http\Controllers\Frontend\OnlineConsultantController;
 use App\Http\Middleware\isDisclaimer;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/artisan', function () {
+    Artisan::call('storage:link');
+});
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home');
