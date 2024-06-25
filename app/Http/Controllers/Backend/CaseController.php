@@ -39,6 +39,11 @@ class CaseController extends Controller
         $case->user_id = $request->customer;
         $case->title = $request->title;
         $case->description = $request->description;
+        if ($request->hasFile('image')) {
+            $fileName = time() . '-image-' . $request->file('image')->getClientOriginalName();
+            $filePath = $request->file('image')->storeAs('uploads/pages', $fileName, 'public');
+            $case->image = '/public/storage/' . $filePath;
+        }
         if ($case->save()) {
             return back()->with('success', 'Case added successfully.');
         } else {
@@ -78,6 +83,11 @@ class CaseController extends Controller
         $case->user_id = $request->customer;
         $case->title = $request->title;
         $case->description = $request->description;
+        if ($request->hasFile('image')) {
+            $fileName = time() . '-image-' . $request->file('image')->getClientOriginalName();
+            $filePath = $request->file('image')->storeAs('uploads/pages', $fileName, 'public');
+            $case->image = '/public/storage/' . $filePath;
+        }
         if ($case->save()) {
             return back()->with('success', 'Case updated successfully.');
         } else {

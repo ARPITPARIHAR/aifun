@@ -1,18 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\PageController;
-use App\Http\Controllers\Backend\CustomerController;
-use App\Http\Controllers\Backend\CaseController;
-use App\Http\Controllers\Backend\BillingController;
-use App\Http\Controllers\Backend\CaseStudyController;
-use App\Http\Controllers\Backend\TeamController;
-use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\Backend\PracticeAreaController;
-use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\LawController;
+use App\Http\Controllers\Backend\CaseController;
+use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\BillingController;
+use App\Http\Controllers\Backend\ConsultController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\CaseStudyController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\PracticeAreaController;
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', 'dashboard')->name('dashboard');
@@ -133,6 +134,11 @@ Route::controller(TeamController::class)->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
     Route::delete('contacts/{id}/delete', [ContactController::class, 'delete'])->name('contacts.delete');
+
+    Route::get('/consult', [ConsultController::class, 'index'])->name('consult.index');
+    Route::delete('consult/{id}/delete', [ConsultController::class, 'delete'])->name('consult.delete');
+
+
 
 
 });

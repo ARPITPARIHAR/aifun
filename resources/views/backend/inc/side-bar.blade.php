@@ -43,7 +43,12 @@
                     <span class="pcoded-mtext">{{ __('Contact Table') }}</span>
                 </a>
             </li>
-
+            <li class="">
+                <a href="{{ route('admin.consult.index') }}">
+                    <span class="pcoded-micon"><i class="feather icon-users"></i></span>
+                    <span class="pcoded-mtext">{{ __('Consult Table') }}</span>
+                </a>
+            </li>
 
             <li class="pcoded-hasmenu active pcoded-trigger">
                 <a href="javascript:void(0)">

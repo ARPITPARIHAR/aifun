@@ -16,7 +16,7 @@
 							</div>
 						</div>
 						<div class="cnslt">
-							<a href="#">Online Consultation</a>
+							<a href="{{route('onlineconsulant')}}">Online Consultation</a>
 						</div>
 						<div class="social">
 							<ul>
@@ -60,6 +60,7 @@
 												</ul>
 											</li>
 											<li class="nav-item"><a class="nav-link" href="{{route('team')}}">Team</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{{route('blog')}}">Blog</a></li>
 											@if (auth()->user())
                                                 <li class="nav-item"><a class="nav-link" href="@if(auth()->user()->user_type=='admin'){{ route('admin.dashboard')}}@else {{ route('customer.dashboard') }}@endif">Dashboard</a></li>
                                             @else

@@ -42,7 +42,7 @@ class ClientController extends Controller
         if ($request->hasFile('logo')) {
             $fileName = time() . '-logo-' . $request->file('logo')->getClientOriginalName();
             $filePath = $request->file('logo')->storeAs('uploads/clients', $fileName, 'public');
-            $client->logo = '/storage/' . $filePath;
+            $client->logo = '/public/storage/' . $filePath;
         }
         $client->save();
         Artisan::call('cache:clear');
@@ -83,7 +83,7 @@ class ClientController extends Controller
         if ($request->hasFile('logo')) {
             $fileName = time() . '-logo-' . $request->file('logo')->getClientOriginalName();
             $filePath = $request->file('logo')->storeAs('uploads/clients', $fileName, 'public');
-            $client->logo = '/storage/' . $filePath;
+            $client->logo = '/public/storage/' . $filePath;
         }
         $client->save();
         Artisan::call('cache:clear');

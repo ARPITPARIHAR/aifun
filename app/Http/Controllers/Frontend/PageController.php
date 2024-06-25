@@ -16,6 +16,12 @@ class PageController extends Controller
     {
         return view('frontend.contact');
     }
+
+    public function blog(Request $request)
+    {
+        return view('frontend.blog');
+    }
+
     public function about_us(Request $request, $slug)
     {
         $page = Page::where('slug', $slug)->first();
@@ -49,4 +55,20 @@ class PageController extends Controller
         $page = Page::where('slug', $slug)->first();
         return view('frontend.page', compact('page'));
     }
+
+
+    public function disclaimer(){
+        return view('frontend.disclaimer');
+    }
+
+    public function acceptDisclaimer(Request $request){
+        // dd($request->all(),session('is_disclaimer'));
+        if ($request->accept=='on') {
+            $request->session()->put('is_disclaimer', true);
+            return redirect()->route('home');
+        } else{
+            return back()->with('error','Please accept disclaimer');
+        }
+    }
+
 }

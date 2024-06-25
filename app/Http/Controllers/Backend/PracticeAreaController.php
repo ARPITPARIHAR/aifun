@@ -51,19 +51,19 @@ class PracticeAreaController extends Controller
         if ($request->hasFile('header_img')) {
             $fileName = time() . '-header-img-' . $request->file('header_img')->getClientOriginalName();
             $filePath = $request->file('header_img')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->header_img = '/storage/' . $filePath;
+            $practice_area->header_img = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->thumbnail_img = '/storage/' . $filePath;
+            $practice_area->thumbnail_img = '/public/storage/' . $filePath;
         }
 
         if ($request->hasFile('icon')) {
 
             $fileName = time() . '-icon-' . $request->file('icon')->getClientOriginalName();
             $filePath = $request->file('icon')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->icon = '/storage/' . $filePath;
+            $practice_area->icon = '/public/storage/' . $filePath;
         }
         $practice_area->save();
         Artisan::call('cache:clear');
@@ -113,19 +113,19 @@ class PracticeAreaController extends Controller
         if ($request->hasFile('header_img')) {
             $fileName = time() . '-header-img-' . $request->file('header_img')->getClientOriginalName();
             $filePath = $request->file('header_img')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->header_img = '/storage/' . $filePath;
+            $practice_area->header_img = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->thumbnail_img = '/storage/' . $filePath;
+            $practice_area->thumbnail_img = '/public/storage/' . $filePath;
         }
 
         if ($request->hasFile('icon')) {
 
             $fileName = time() . '-icon-' . $request->file('icon')->getClientOriginalName();
             $filePath = $request->file('icon')->storeAs('uploads/practice-areas', $fileName, 'public');
-            $practice_area->icon = '/storage/' . $filePath;
+            $practice_area->icon = '/public/storage/' . $filePath;
         }
         $practice_area->save();
         Artisan::call('cache:clear');

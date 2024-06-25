@@ -42,7 +42,7 @@ class LawController extends Controller
         if ($request->hasFile('icon')) {
             $fileName = time() . '-icon-' . $request->file('icon')->getClientOriginalName();
             $filePath = $request->file('icon')->storeAs('uploads/laws', $fileName, 'public');
-            $law->icon = '/storage/' . $filePath;
+            $law->icon = '/public/storage/' . $filePath;
         }
         $law->save();
         Artisan::call('cache:clear');
@@ -83,7 +83,7 @@ class LawController extends Controller
         if ($request->hasFile('icon')) {
             $fileName = time() . '-icon-' . $request->file('icon')->getClientOriginalName();
             $filePath = $request->file('icon')->storeAs('uploads/laws', $fileName, 'public');
-            $law->icon = '/storage/' . $filePath;
+            $law->icon = '/public/storage/' . $filePath;
         }
         $law->update();
         Artisan::call('cache:clear');

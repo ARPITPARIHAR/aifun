@@ -46,7 +46,7 @@ class TeamController extends Controller
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-team-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/teams', $fileName, 'public');
-            $team->header_img = '/storage/' . $filePath;
+            $team->header_img = '/public/storage/' . $filePath;
         }
         $team->save();
         Artisan::call('cache:clear');
@@ -89,7 +89,7 @@ class TeamController extends Controller
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-team-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/teams', $fileName, 'public');
-            $team->thumbnail_img = '/storage/' . $filePath;
+            $team->thumbnail_img = '/public/storage/' . $filePath;
         }
         $team->update();
         Artisan::call('cache:clear');

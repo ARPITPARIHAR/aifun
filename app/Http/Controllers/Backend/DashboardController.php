@@ -45,17 +45,17 @@ class DashboardController extends Controller
         if ($request->hasFile('header_logo')) {
             $fileName = time() . '-header-logo-' . $request->file('header_logo')->getClientOriginalName();
             $filePath = $request->file('header_logo')->storeAs('uploads/logos', $fileName, 'public');
-            $business_info->header_logo = '/storage/' . $filePath;
+            $business_info->header_logo = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('footer_logo')) {
             $fileName = time() . '-footer-logo-' . $request->file('footer_logo')->getClientOriginalName();
             $filePath = $request->file('footer_logo')->storeAs('uploads/logos', $fileName, 'public');
-            $business_info->footer_logo = '/storage/' . $filePath;
+            $business_info->footer_logo = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('admin_logo')) {
             $fileName = time() . '-admin-logo-' . $request->file('admin_logo')->getClientOriginalName();
             $filePath = $request->file('admin_logo')->storeAs('uploads/logos', $fileName, 'public');
-            $business_info->admin_logo = '/storage/' . $filePath;
+            $business_info->admin_logo = '/public/storage/' . $filePath;
         }
         $business_info->update();
         if ($request->password) {
@@ -83,7 +83,7 @@ class DashboardController extends Controller
         if ($request->hasFile('avatar')) {
             $fileName = time() . '-avatar-' . $request->file('avatar')->getClientOriginalName();
             $filePath = $request->file('avatar')->storeAs('uploads/profiles', $fileName, 'public');
-            $profile->avatar = '/storage/' . $filePath;
+            $profile->avatar = '/public/storage/' . $filePath;
         }
         if ($request->password) {
             $profile->password = Hash::make($request->password);

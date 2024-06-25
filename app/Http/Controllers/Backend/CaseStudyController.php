@@ -48,7 +48,7 @@ class CaseStudyController extends Controller
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/pages', $fileName, 'public');
-            $study->thumbnail_img = '/storage/' . $filePath;
+            $study->thumbnail_img = '/public/storage/' . $filePath;
         }
         $study->save();
         return back()->with('success', 'Study added successfully.');
@@ -95,7 +95,7 @@ class CaseStudyController extends Controller
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/pages', $fileName, 'public');
-            $study->thumbnail_img = '/storage/' . $filePath;
+            $study->thumbnail_img = '/public/storage/' . $filePath;
         }
         $study->update();
         return back()->with('success', 'Study added successfully.');

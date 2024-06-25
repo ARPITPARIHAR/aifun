@@ -1,13 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\PageController;
-use App\Http\Controllers\Frontend\PracticeAreaController;
-use App\Http\Controllers\Frontend\ContactController;
-use App\Http\Controllers\LoginController;
-
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\isCustomer;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Frontend\PageController;
+
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\PracticeAreaController;
+use App\Http\Controllers\Frontend\OnlineConsultantController;
+use App\Http\Middleware\isDisclaimer;
 
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home');
@@ -19,6 +21,9 @@ Route::controller(PageController::class)->group(function () {
     Route::get('publications', 'publications')->name('publications');
     Route::get('careers', 'careers')->name('careers');
     Route::get('page/{slug}', 'show')->name('pages.show');
+    Route::get('blog', 'blog')->name('blog');
+    Route::get('is-disclaimer', 'disclaimer')->name('is-disclaimer')->withoutMiddleware([isDisclaimer::class]);
+    Route::post('is-disclaimer', 'acceptDisclaimer')->name('accept-disclaimer')->withoutMiddleware([isDisclaimer::class]);
 });
 
 Route::controller(PracticeAreaController::class)->group(function () {
@@ -38,4 +43,7 @@ Route::post('/register', [LoginController::class, 'register'])->name('register')
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
+
+Route::get('onlineconsulant', [OnlineConsultantController::class, 'view'])->name('onlineconsulant');
+Route::post('/consultation-form', [OnlineConsultantController::class, 'store'])->name('onlineconsulant.store');
 

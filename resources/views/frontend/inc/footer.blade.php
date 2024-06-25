@@ -19,6 +19,7 @@
 						<li><a href="{{ route('publications') }}">Publications</a></li>
 						<li><a href="{{ route('careers') }}">Careers</a></li>
 						<li><a href="{{route('contact-us')}}">Contact Us</a></li>
+                        <li><a href="{{route('blog')}}">Blog</a></li>
 					</ul>
 				</div>
 			</div>

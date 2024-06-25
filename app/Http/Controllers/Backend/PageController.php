@@ -57,12 +57,12 @@ class PageController extends Controller
         if ($request->hasFile('header_img')) {
             $fileName = time() . '-header-img-' . $request->file('header_img')->getClientOriginalName();
             $filePath = $request->file('header_img')->storeAs('uploads/pages', $fileName, 'public');
-            $page->header_img = '/storage/' . $filePath;
+            $page->header_img = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/pages', $fileName, 'public');
-            $page->thumbnail_img = '/storage/' . $filePath;
+            $page->thumbnail_img = '/public/storage/' . $filePath;
         }
         $page->save();
         Artisan::call('cache:clear');
@@ -121,12 +121,12 @@ class PageController extends Controller
         if ($request->hasFile('header_img')) {
             $fileName = time() . '-header-img-' . $request->file('header_img')->getClientOriginalName();
             $filePath = $request->file('header_img')->storeAs('uploads/pages', $fileName, 'public');
-            $page->header_img = '/storage/' . $filePath;
+            $page->header_img = '/public/storage/' . $filePath;
         }
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-thumbnail-img-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/pages', $fileName, 'public');
-            $page->thumbnail_img = '/storage/' . $filePath;
+            $page->thumbnail_img = '/public/storage/' . $filePath;
         }
         $page->update();
         Artisan::call('cache:clear');

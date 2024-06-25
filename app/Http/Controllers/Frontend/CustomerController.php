@@ -27,7 +27,7 @@ class CustomerController extends Controller
         if ($request->hasFile('avatar')) {
             $fileName = time() . '-avatar-' . $request->file('avatar')->getClientOriginalName();
             $filePath = $request->file('avatar')->storeAs('uploads/profiles', $fileName, 'public');
-            $profile->avatar = '/storage/' . $filePath;
+            $profile->avatar = '/public/storage/' . $filePath;
         }
         if ($request->password) {
             $profile->password = Hash::make($request->password);
