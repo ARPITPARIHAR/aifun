@@ -54,7 +54,7 @@
                                             <li class="nav-item dropdown">
 												<a class="nav-link dropdown-toggle" href="{{route('practice-areas.index')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Practice Areas</a>
 												<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                    <li><a class="dropdown-item" href="{{route('practice-areas.index)}}">{{__('All')}}</a></li>
+                                                    <li><a class="dropdown-item" href="{{route('practice-areas.index')}}">{{__('All')}}</a></li>
                                                     @foreach (App\Models\PracticeArea::orderBy('title')->get() as $practice_areas)
                                                         <li><a class="dropdown-item" href="{{route('practice-area.show',$practice_areas->slug)}}">{{Str::headline($practice_areas->title)}}</a></li>
                                                     @endforeach
