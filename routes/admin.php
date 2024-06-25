@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\LawController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TeamController;
@@ -131,6 +132,18 @@ Route::controller(TeamController::class)->group(function () {
         Route::post('{id}/edit', 'update')->name('update');
         Route::get('{id}/delete', 'destroy')->name('delete');
     });
+});
+    Route::controller(BlogController::class)->group(function () {
+        Route::group(['prefix' => 'blogs', 'as' => 'blogs.'], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::get('{id}/edit', 'edit')->name('edit');
+            Route::post('{id}/edit', 'update')->name('update');
+            Route::get('{id}/delete', 'destroy')->name('delete');
+        });
+
+
 
     Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
     Route::delete('contacts/{id}/delete', [ContactController::class, 'delete'])->name('contacts.delete');
@@ -142,5 +155,6 @@ Route::controller(TeamController::class)->group(function () {
 
 
 });
+
 
 // Contact Routes
