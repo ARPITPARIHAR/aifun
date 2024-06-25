@@ -25,7 +25,8 @@
 			</div>
 			<div class="col-md-4">
 				<div class="blg_box">
-					<img src="images/blog001.jpg" alt="blog">
+                    <img src="{{ asset('frontend/images/blog001.jpg') }}" alt="blog">
+
 					<div class="content">
 						<span>30 May 2024</span>
 						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
@@ -35,7 +36,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="blg_box">
-					<img src="images/blog002.jpg" alt="blog">
+                    <img src="{{ asset('frontend/images/blog002.jpg') }}" alt="blog">
 					<div class="content">
 						<span>30 May 2024</span>
 						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
@@ -45,7 +46,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="blg_box">
-					<img src="images/blog003.jpg" alt="blog">
+                    <img src="{{ asset('frontend/images/blog003.jpg') }}" alt="blog">
 					<div class="content">
 						<span>30 May 2024</span>
 						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
@@ -55,7 +56,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="blg_box">
-					<img src="images/blog001.jpg" alt="blog">
+                    <img src="{{ asset('frontend/images/blog001.jpg') }}" alt="blog">
 					<div class="content">
 						<span>30 May 2024</span>
 						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
@@ -65,7 +66,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="blg_box">
-					<img src="images/blog003.jpg" alt="blog">
+                    <img src="{{ asset('frontend/images/blog003.jpg') }}" alt="blog">
 					<div class="content">
 						<span>30 May 2024</span>
 						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
