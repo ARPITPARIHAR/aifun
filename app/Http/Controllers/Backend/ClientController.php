@@ -32,11 +32,13 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'practice' => 'required|numeric',
             'name' => 'required|string',
             'url' => 'nullable|url',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $client = new Client;
+        $client->practice_id = $request->practice;
         $client->name = $request->name;
         $client->url = $request->url ?? '#';
         if ($request->hasFile('logo')) {
@@ -73,11 +75,13 @@ class ClientController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'practice' => 'required|numeric',
             'name' => 'required|string',
             'url' => 'nullable|url',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $client = Client::findOrFail(decrypt($id));
+        $client->practice_id = $request->practice;
         $client->name = $request->name;
         $client->url = $request->url ?? '#';
         if ($request->hasFile('logo')) {

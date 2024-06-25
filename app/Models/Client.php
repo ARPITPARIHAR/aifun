@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    use HasFactory;
+    public function practice()
+    {
+        return $this->belongsTo(PracticeArea::class,'practice_id');
+    }
 }

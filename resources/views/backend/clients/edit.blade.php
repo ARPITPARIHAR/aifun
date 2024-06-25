@@ -27,6 +27,24 @@
                 <form action="{{ route('admin.clients.edit',encrypt($client->id)) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Practice') }}</label>
+                        <div class="col-sm-10">
+                            <select name="practice" class="form-control @error('practice') form-control-danger @enderror">
+                                <option value="">{{ __('Select Customer') }}</option>
+                                @foreach (App\Models\PracticeArea::orderBy('title')->get() as $practice)
+                                    <option value="{{ $practice->id }}" @selected($practice->id==(old('practice') ?? $client->practice_id))>{{ $practice->title }}</option>
+                                @endforeach
+                            </select>
+                            <span class="messages">
+                                @error('practice')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                    <p class="text-muted">{{ __("Leave it blank if you don't want to insert it on any page.") }}</p>
+                                @enderror
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
                         <div class="col-sm-10">
                             <input type="text" name="name" id="name" value="{{ old('name') ?? $client->name }}" placeholder="{{ __('Enter Name') }}" class="form-control @error('name') form-control-danger @enderror">

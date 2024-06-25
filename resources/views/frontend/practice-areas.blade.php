@@ -17,15 +17,12 @@
 <section class="prctc">
 	<div class="container">
 		<div class="row">
-            @foreach (App\Models\Page::where('parent_id',10)->orderBy('position')->get() as $key=>$page)
+            @foreach (App\Models\PracticeArea::orderBy('title')->get() as $key=>$practice_area)
 			<div class="col-lg-3 col-md-4 col-sm-6">
 				<div class="prctc_bx">
 					<a href="#">
-                        @php
-                            $image="frontend/images/prctc00".($key+1).".png"
-                        @endphp
-					<div class="prctc_icn"><img src="{{asset($image)}}" alt="prctc"></div>
-					<h3>{{$page->name}}</h3></a>
+					<div class="prctc_icn"><img src="{{asset($practice_area->icon)}}" alt="{{$practice_area->title}}"></div>
+					<h3>{{$practice_area->title}}</h3></a>
 				</div>
 			</div>
             @endforeach
