@@ -22,58 +22,19 @@
 					<span>Blogs</span>
 					<h2>News and Insights</h2>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blg_box">
-                    <img src="{{ asset('frontend/images/blog001.jpg') }}" alt="blog">
-
-					<div class="content">
-						<span>30 May 2024</span>
-						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
-						<a href="#" class="seemore">See More...</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blg_box">
-                    <img src="{{ asset('frontend/images/blog002.jpg') }}" alt="blog">
-					<div class="content">
-						<span>30 May 2024</span>
-						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
-						<a href="#" class="seemore">See More...</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blg_box">
-                    <img src="{{ asset('frontend/images/blog003.jpg') }}" alt="blog">
-					<div class="content">
-						<span>30 May 2024</span>
-						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
-						<a href="#" class="seemore">See More...</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blg_box">
-                    <img src="{{ asset('frontend/images/blog001.jpg') }}" alt="blog">
-					<div class="content">
-						<span>30 May 2024</span>
-						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
-						<a href="#" class="seemore">See More...</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="blg_box">
-                    <img src="{{ asset('frontend/images/blog003.jpg') }}" alt="blog">
-					<div class="content">
-						<span>30 May 2024</span>
-						<h3>Fantasy gaming crackdown may make things tricky for education platforms</h3>
-						<a href="#" class="seemore">See More...</a>
-					</div>
-				</div>
-			</div>
+		
+			@foreach (App\Models\Blog::take(5)->latest()->get() as $blog)
+                <div class="col-md-4">
+                    <div class="blg_box">
+                        <img src="{{ asset($blog->image) }}" alt="blog">
+                        <div class="content">
+                            <span>{{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}</span>
+                            <p>{{ $blog->brief_description }}</p>
+                            <a href="#" class="seemore">See More...</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
 		</div>
 	</div>

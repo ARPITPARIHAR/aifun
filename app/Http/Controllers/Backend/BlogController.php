@@ -15,8 +15,8 @@ class BlogController extends Controller
     public function index()
     {
 
-        $sliders = Blog::paginate(15);
-        return view('backend.sliders.index', compact('sliders'));
+        $blogs = Blog::paginate(15);
+        return view('backend.blogs.index', compact('blogs'));
     }
 
     /**
@@ -33,7 +33,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           
+
             'brief_description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -62,8 +62,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $slider = Blog::findOrFail(decrypt($id));
-        return view('backend.sliders.edit', compact('slider'));
+        $blog = Blog::findOrFail(decrypt($id));
+        return view('backend.blogs.edit', compact('blog'));
     }
 
     /**

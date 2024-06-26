@@ -26,6 +26,12 @@
                 </a>
             </li>
             <li class="">
+                <a href="{{ route('admin.blogs.index') }}">
+                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                    <span class="pcoded-mtext">{{ __('Blogs') }}</span>
+                </a>
+            </li>
+            <li class="">
                 <a href="{{ route('admin.teams.index') }}">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
                     <span class="pcoded-mtext">{{ __('Teams') }}</span>
@@ -38,12 +44,7 @@
                     <span class="pcoded-mtext">{{ __('Clients') }}</span>
                 </a>
             </li>
-            {{-- <li class="">
-                <a href="{{ route('admin.blog.index') }}">
-                    <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                    <span class="pcoded-mtext">{{ __('Practice Areas') }}</span>
-                </a>
-            </li> --}}
+
             <li class="">
                 <a href="{{ route('admin.contact.index') }}">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
