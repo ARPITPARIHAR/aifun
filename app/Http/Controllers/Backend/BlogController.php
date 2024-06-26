@@ -42,7 +42,7 @@ class BlogController extends Controller
         if ($request->hasFile('image')) {
             $fileName = time() . '-slider-' . $request->file('image')->getClientOriginalName();
             $filePath = $request->file('image')->storeAs('uploads/blogs', $fileName, 'public');
-            $blog->image = '/storage/public/' . $filePath;
+            $blog->image = '/public/storege/' . $filePath;
         }
         $blog->save();
         Artisan::call('cache:clear');

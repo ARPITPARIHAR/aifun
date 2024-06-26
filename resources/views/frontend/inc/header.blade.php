@@ -42,7 +42,7 @@
 									<div class="collapse navbar-collapse" id="mySidebar">
 										<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 											<button onclick="sdbr_close()" class="close">&times;</button>
-											<li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+											<li class="nav-item"><a class="nav-link active" href="{{ route('home') }}">Home</a></li>
 											<li class="nav-item dropdown">
 												<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
 												<ul class="dropdown-menu" aria-labelledby="navbarDropdown">

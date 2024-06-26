@@ -22,7 +22,7 @@
 					<span>Blogs</span>
 					<h2>News and Insights</h2>
 				</div>
-		
+            </div>
 			@foreach (App\Models\Blog::take(5)->latest()->get() as $blog)
                 <div class="col-md-4">
                     <div class="blg_box">
