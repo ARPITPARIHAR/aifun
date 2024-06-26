@@ -44,8 +44,8 @@
                                 <td>{{ $case->title }}</td>
                                 <td>{{ optional($case->user)->name }}</td>
                                 <td>{{ $case->description }}</td>
-                                <td>{{ $case->image }}</td>
-                                <td>{{ format_price($case->fee) }}</td>
+                                <td><img src="{{ asset($case->image) }}" width="150"></td>
+                                 <td>{{ format_price($case->fee) }}</td>
                                 <td>{{ Str::headline($case->status) }}</td>
                                 <td>{{ date('d-m-Y h:iA',strtotime($case->updated_at)) }}</td>
                                 <td>
