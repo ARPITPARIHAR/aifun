@@ -7,14 +7,18 @@
 						<a href="mailto:{{businessSetting(1)->email}}">Mail Us:{{businessSetting(1)->email}}</a>
 					</div>
 					<div class="tp_rght">
-						<div class="srch">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username">
-								<div class="input-group-append">
-									<span class="input-group-text">Go</span>
-								</div>
-							</div>
-						</div>
+                        <div class="srch">
+                            <form action="{{ route('search') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="query" class="form-control" placeholder="Search..." aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="input-group-text">Go</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
 						<div class="cnslt">
 							<a href="{{route('onlineconsulant')}}">Online Consultation</a>
 						</div>
@@ -46,7 +50,7 @@
 											<li class="nav-item dropdown">
 												<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
 												<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-													@foreach (App\Models\Page::where('parent_id',2)->orderBy('position')->get() as $page)
+													@foreach (App\Models\Page::where('parent_id',2)->where('active',1)->orderBy('position')->get() as $page)
                                                         <li><a class="dropdown-item" href="{{route('about-us',$page->slug)}}">{{Str::headline($page->name)}}</a></li>
                                                     @endforeach
 												</ul>
@@ -55,13 +59,14 @@
 												<a class="nav-link dropdown-toggle" href="{{route('practice-areas.index')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Practice Areas</a>
 												<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                     <li><a class="dropdown-item" href="{{route('practice-areas.index')}}">{{__('All')}}</a></li>
-                                                    @foreach (App\Models\PracticeArea::orderBy('title')->get() as $practice_areas)
+                                                    @foreach (App\Models\PracticeArea::where('active',1)->orderBy('position')->get() as $practice_areas)
                                                         <li><a class="dropdown-item" href="{{route('practice-area.show',$practice_areas->slug)}}">{{Str::headline($practice_areas->title)}}</a></li>
                                                     @endforeach
 												</ul>
 											</li>
 											<li class="nav-item"><a class="nav-link" href="{{route('team')}}">Team</a></li>
                                             <li class="nav-item"><a class="nav-link" href="{{route('blog')}}">Blog</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="{{route('careers')}}">Careers</a></li>
 											@if (auth()->user())
                                                 <li class="nav-item"><a class="nav-link" href="@if(auth()->user()->user_type=='admin'){{ route('admin.dashboard')}}@else {{ route('customer.dashboard') }}@endif">Dashboard</a></li>
                                             @else

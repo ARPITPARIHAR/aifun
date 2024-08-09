@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Page;
-
+use App\Models\Blog;
+use App\Models\Team;
 class PageController extends Controller
 {
     public function home(Request $request)
@@ -21,6 +22,16 @@ class PageController extends Controller
     {
         return view('frontend.blog');
     }
+    
+    public function blogDetail(Request $request,$slug)
+    {
+        if( $blog = Blog::where('slug',$slug)->first()){
+            return view('frontend.blog-detail',compact('blog'));
+        }
+        abort(404);
+        
+    }
+
 
     public function about_us(Request $request, $slug)
     {
@@ -30,6 +41,15 @@ class PageController extends Controller
     public function team(Request $request)
     {
         return view('frontend.team');
+    }
+     public function aboutTeam(Request $request,$slug)
+    {
+        
+        if($team =Team::where('slug',$slug)->first()){
+            return view('frontend.team-detail',compact('team'));
+        }
+         abort(404);
+        
     }
     public function login_register(Request $request)
     {
@@ -65,7 +85,7 @@ class PageController extends Controller
         // dd($request->all(),session('is_disclaimer'));
         if ($request->accept=='on') {
             $request->session()->put('is_disclaimer', true);
-            return redirect()->route('home');
+            return back()->with('success','Disclaimer accepted');
         } else{
             return back()->with('error','Please accept disclaimer');
         }

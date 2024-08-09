@@ -32,6 +32,7 @@
                                 <th>{{ __('Description') }}</th>
                                 <th>{{ __('Payment Method') }}</th>
                                 <th>{{ __('Payment Date') }}</th>
+                                 <th>{{ __('File') }}</th>
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
                             </tr>
@@ -45,6 +46,9 @@
                                 <td>{{ $billing->description }}</td>
                                 <td>{{ Str::headline($billing->payment_mode) }}</td>
                                 <td>{{ date('d-m-Y',strtotime($billing->payment_date)) }}</td>
+                                <td>
+                                    <a href="{{ asset($billing->image) }}" download="{{ date('YmdhHis',strtotime($billing->created_at)) }}">Download File</a>
+                                </td>
                                 <td>{{ date('d-m-Y h:iA',strtotime($billing->updated_at)) }}</td>
                                 <td>
                                     <a href="{{ route('admin.billings.edit',encrypt($billing->id)) }}" class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
@@ -61,6 +65,7 @@
                                 <th>{{ __('Description') }}</th>
                                 <th>{{ __('Payment Method') }}</th>
                                 <th>{{ __('Payment Date') }}</th>
+                                 <th>{{ __('File') }}</th>
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
                             </tr>

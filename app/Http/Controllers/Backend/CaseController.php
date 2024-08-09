@@ -34,14 +34,16 @@ class CaseController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'customer' => 'required|numeric',
+            'file' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv|max:20480', // Max 20MB
         ]);
         $case = new CustomerCase;
         $case->user_id = $request->customer;
         $case->title = $request->title;
         $case->description = $request->description;
-        if ($request->hasFile('image')) {
-            $fileName = time() . '-image-' . $request->file('image')->getClientOriginalName();
-            $filePath = $request->file('image')->storeAs('uploads/pages', $fileName, 'public');
+         if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '-case-file-' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/documents', $fileName, 'public');
             $case->image = '/public/storage/' . $filePath;
         }
         if ($case->save()) {
@@ -78,14 +80,16 @@ class CaseController extends Controller
             'title' => 'required|string',
             'description' => 'required|string',
             'customer' => 'required|numeric',
+            'file' => 'nullable|mimes:jpg,jpeg,png,pdf,doc,docx,xls,xlsx,csv|max:20480', // Max 20MB
         ]);
         $case = CustomerCase::findOrFail(decrypt($id));
         $case->user_id = $request->customer;
         $case->title = $request->title;
         $case->description = $request->description;
-        if ($request->hasFile('image')) {
-            $fileName = time() . '-image-' . $request->file('image')->getClientOriginalName();
-            $filePath = $request->file('image')->storeAs('uploads/pages', $fileName, 'public');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '-case-file-' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/documents', $fileName, 'public');
             $case->image = '/public/storage/' . $filePath;
         }
         if ($case->save()) {

@@ -33,6 +33,7 @@ class PracticeAreaController extends Controller
     {
         $request->validate([
             'title' => 'required|string|unique:practice_areas,title',
+            'position' => 'required|numeric',
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'brief_description' => 'nullable|string',
@@ -42,6 +43,7 @@ class PracticeAreaController extends Controller
         ]);
         $practice_area = new PracticeArea;
         $practice_area->title = $request->title;
+        $practice_area->position = $request->position;
         $practice_area->meta_title = $request->meta_title;
         $practice_area->meta_description = $request->meta_description;
         $practice_area->brief_description = $request->brief_description;
@@ -95,6 +97,7 @@ class PracticeAreaController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
+            'position' => 'required|numeric',
             'meta_title' => 'required|string',
             'meta_description' => 'required|string',
             'brief_description' => 'nullable|string',
@@ -106,6 +109,7 @@ class PracticeAreaController extends Controller
 
         $practice_area = PracticeArea::findOrFail(decrypt($id));
         $practice_area->title = $request->title;
+        $practice_area->position = $request->position;
         $practice_area->meta_title = $request->meta_title;
         $practice_area->meta_description = $request->meta_description;
         $practice_area->brief_description = $request->brief_description;
@@ -130,6 +134,19 @@ class PracticeAreaController extends Controller
         $practice_area->save();
         Artisan::call('cache:clear');
         return back()->with('success', 'Pratice area updated successfully.');
+    }
+    
+    public function activeDeactive(Request $request)
+    {
+        
+       $practice_area = PracticeArea::findOrFail(decrypt($request->id)); 
+       if($request->status){
+          $practice_area->active = 1;
+       } else{
+          $practice_area->active = 0;  
+       }
+       $practice_area->update();
+       return $practice_area->active;
     }
 
     /**

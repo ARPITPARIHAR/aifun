@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Contact;
-
+use App\Mail\ContactUsMail;
+use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
     public function store(Request $request)
@@ -27,7 +28,11 @@ class ContactController extends Controller
 
         // Save the contact into the database
         $contact->save();
-
+        try {
+            Mail::to('gogralegal@gmail.com')->send(new ContactUsMail($contact));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
         // Optionally, you can process further logic here, like sending an email
 
         // Store the form data in a session for display in the view

@@ -30,6 +30,7 @@
                                 <th>{{ __('Title') }}</th>
                                 <th>{{ __('Header Image') }}</th>
                                 <th>{{ __('Brief Description') }}</th>
+                                <th>{{ __('Active') }}</th>
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
                             </tr>
@@ -41,6 +42,11 @@
                                 <td>{{ $practice_area->title }}</td>
                                 <td><img src="{{ asset($practice_area->header_img) }}" width="150"></td>
                                 <td>{{ $practice_area->breif_description }}</td>
+                                <td>
+                                    <div class="col-sm-12">
+                                        <input type="checkbox" class="js-small f-right" value="1" onchange="active(this,'{{encrypt($practice_area->id)}}')" @if($practice_area->active==1) checked="" @endif>
+                                    </div>
+                                </td>
                                 <td>{{ date('d-m-Y h:iA',strtotime($practice_area->updated_at)) }}</td>
                                 <td>
                                     <a href="{{ route('admin.practice_areas.edit',encrypt($practice_area->id)) }}" class="btn btn-sm btn-primary">{{ __('Edit') }}</a>
@@ -55,6 +61,7 @@
                                 <th>{{ __('Title') }}</th>
                                 <th>{{ __('Header Image') }}</th>
                                 <th>{{ __('Brief Description') }}</th>
+                                <th>{{ __('Active') }}</th>
                                 <th>{{ __('Updated At') }}</th>
                                 <th>{{ __('Actions') }}</th>
                             </tr>
@@ -81,8 +88,34 @@
 
 @endsection
 @section('scripts')
+    <script src="{{ asset('backend/plugins/switchery/js/switchery.min.js') }}"></script>
+    <script>
+        // Multiple swithces
+        var elem = Array.prototype.slice.call(document.querySelectorAll('.js-small'));
 
+        elem.forEach(function(html) {
+            var switchery = new Switchery(html, {
+                color: '#1abc9c',
+                jackColor: '#fff',
+                size: 'small'
+            });
+        });
+        function active(el,id) {
+            var status = 0;
+            if (el.checked) {
+                status = 1;
+            }
+            $.post("{{ route('admin.practice_areas.active-deactive') }}", {_token:"{{ csrf_token() }}", id:id,status:status}, function(data){
+                if(data == 1){
+                    console.log('Active Successfully');
+                }
+                else{
+                   console.log('Deactive Successfully');
+                }
+            });
+        }
+    </script>
 @endsection
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('backend/plugins/switchery/css/switchery.min.css') }}">
 @endsection

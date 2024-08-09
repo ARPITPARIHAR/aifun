@@ -27,10 +27,12 @@ class OnlineConsultantController extends Controller
         $contact->save();
 
         $request->session()->flash('contact_form_data', $request->only(['name', 'phone', 'email', 'query']));
-
-        //  Mail::to('ankurparihar111@gmail.com')->send(new ConsultantQueryMail($contact->toArray()));
-
-        return redirect()->back()->with('success', 'Your Query Submitted');
+        try {
+            Mail::to('gogralegal@gmail.com')->send(new ConsultantQueryMail($contact->toArray()));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        return redirect()->back()->with('success', 'Thank you for your email, we will look into this and get back to you soone');
     }
 }
 

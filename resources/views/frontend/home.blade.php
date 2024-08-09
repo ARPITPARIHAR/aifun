@@ -4,6 +4,7 @@
 @section('content')
     @include('frontend.inc.slider')
     @include('frontend.inc.laws')
+    @include('frontend.inc.practice-areas')
     @include('frontend.inc.company-overview')
     @include('frontend.inc.case-study')
     @include('frontend.inc.clients')

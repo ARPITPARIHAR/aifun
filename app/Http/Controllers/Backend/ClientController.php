@@ -93,6 +93,17 @@ class ClientController extends Controller
         Artisan::call('cache:clear');
         return back()->with('success', 'Client  update successfully.');
     }
+    public function featured(Request $request)
+    {
+       $client = Client::findOrFail(decrypt($request->id)); 
+       if($request->status){
+          $client->featured = 1;
+       } else{
+          $client->featured = 0;  
+       }
+       $client->update();
+       return $client->featured;
+    }
 
     /**
      * Remove the specified resource from storage.

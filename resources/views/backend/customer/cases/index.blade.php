@@ -30,7 +30,7 @@
                                 <th>{{ __('Title') }}</th>
                                 <th>{{ __('Customer Name') }}</th>
                                 <th>{{ __('Description') }}</th>
-                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('File') }}</th>
                                 <th>{{ __('Fee') }}</th>
                                 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Updated At') }}</th>
@@ -44,8 +44,10 @@
                                 <td>{{ $case->title }}</td>
                                 <td>{{ optional($case->user)->name }}</td>
                                 <td>{{ $case->description }}</td>
-                                <td><img src="{{ asset($case->image) }}" width="150"></td>
-                                 <td>{{ format_price($case->fee) }}</td>
+                                <td>
+                                    <a href="{{ asset($case->image) }}" download="{{ date('YmdhHis',strtotime($case->created_at)) }}">Download File</a>
+                                </td>
+                                <td>{{ format_price($case->fee) }}</td>
                                 <td>{{ Str::headline($case->status) }}</td>
                                 <td>{{ date('d-m-Y h:iA',strtotime($case->updated_at)) }}</td>
                                 <td>
@@ -61,7 +63,7 @@
                                 <th>{{ __('Title') }}</th>
                                 <th>{{ __('Customer Name') }}</th>
                                 <th>{{ __('Description') }}</th>
-                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('File') }}</th>
                                 <th>{{ __('Fee') }}</th>
                                 <th>{{ __('Status') }}</th>
                                 <th>{{ __('Updated At') }}</th>

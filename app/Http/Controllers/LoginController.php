@@ -28,6 +28,9 @@ class LoginController extends Controller
         $user->email=$request->email;
         $user->phone=$request->phone;
         $user->address=$request->address;
+        if($request->newsletter){
+            $user->newsletter=1;
+        }
         $user->password=Hash::make($request->password);
         if ($user->save()) {
             return back()->with('success','You are successfully register. login your account');
@@ -42,16 +45,16 @@ class LoginController extends Controller
         ]);
         $email =$request->email;
         $password =$request->password;
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'active'=>1])) {
            if (auth()->user()->user_type=='customer') {
-            return redirect()->route('customer.dashboard');
-           }elseif (auth()->user()->user_type=='admin') {
+                return redirect()->route('customer.dashboard');
+           } elseif (auth()->user()->user_type=='admin') {
              return redirect()->route('admin.dashboard');
-           }else{
-            return back()->with('error',"your login credentials don't match an account in our system");
+           } else{
+             return back()->with('error',"your login credentials don't match an account in our system");
            }
 
-        }else{
+        } else{
             return back()->with('error',"your login credentials don't match an account in our system");
         }
     }

@@ -61,6 +61,17 @@
                             @enderror
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" id="description" placeholder="{{ __('Enter Description') }}" class="form-control @error('description') form-control-danger @enderror">{{ old('description') ?? $team->description }}</textarea>
+                            @error('description')
+                                <p class="text-danger error">{{ $message }}</p>
+                            @else
+                                <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Thumbnail Img') }}</label>
                         <div class="col-sm-10">

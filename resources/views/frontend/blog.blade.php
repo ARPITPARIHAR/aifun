@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
-@section('meta_title','Contact To | '.env('APP_NAME'))
+@section('meta_title','Blogs | '.env('APP_NAME'))
 @section('meta_description','Gogra Legal')
 @section('content')
 <section class="inner_banner">
@@ -30,7 +30,7 @@
                         <div class="content">
                             <span>{{ \Carbon\Carbon::parse($blog->created_at)->format('d M Y') }}</span>
                             <p>{{ $blog->brief_description }}</p>
-                            <a href="#" class="seemore">See More...</a>
+                            <a href="{{route('blog-details',$blog->slug)}}" class="seemore">See More...</a>
                         </div>
                     </div>
                 </div>

@@ -71,8 +71,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Upload File ') }}</label>
                         <div class="col-sm-10">
-                            <input type="file" name="image" class="form-control-file @error('file') is-invalid @enderror"
-                                   accept=".pdf,.jpg,.jpeg,.doc">
+                            <input type="file" name="file" class="form-control-file @error('file') is-invalid @enderror">
                             @error('file')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

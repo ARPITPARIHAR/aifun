@@ -36,6 +36,7 @@ class TeamController extends Controller
             'name' => 'required|string',
             'designation' => 'required|string',
             'brief_description' => 'required|string',
+            'description' => 'required|string',
             'thumbnail_img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -43,6 +44,7 @@ class TeamController extends Controller
         $team->name = $request->name;
         $team->designation = $request->designation;
         $team->brief_description = $request->brief_description;
+        $team->description = $request->description;
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-team-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/teams', $fileName, 'public');
@@ -80,12 +82,14 @@ class TeamController extends Controller
             'name' => 'required|string',
             'designation' => 'required|string',
             'brief_description' => 'required|string',
+            'description' => 'required|string',
             'thumbnail_img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $team = Team::findOrFail(decrypt($id));
         $team->name = $request->name;
         $team->designation = $request->designation;
         $team->brief_description = $request->brief_description;
+        $team->description = $request->description;
         if ($request->hasFile('thumbnail_img')) {
             $fileName = time() . '-team-' . $request->file('thumbnail_img')->getClientOriginalName();
             $filePath = $request->file('thumbnail_img')->storeAs('uploads/teams', $fileName, 'public');

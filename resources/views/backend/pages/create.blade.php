@@ -71,6 +71,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Position') }}</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="position" id="position" value="{{ old('position')}}" placeholder="{{ __('Enter Page Position') }}" class="form-control @error('position') form-control-danger @enderror">
+                           <span class="messages">
+                                @error('position')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                @enderror
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Meta Title') }}</label>
                         <div class="col-sm-10">
                             <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title')}}" placeholder="{{ __('Enter Meta Title') }}" class="form-control @error('meta_title') form-control-danger @enderror">

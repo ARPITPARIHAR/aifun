@@ -16,7 +16,7 @@
 						<li><a href="{{route('home')}}">Home</a></li>
 						<li><a href="{{ route('practice-areas.index') }}">Practice Areas</a></li>
 						<li><a href="{{ route('lawyers') }}">Lawyers</a></li>
-						<li><a href="{{ route('publications') }}">Publications</a></li>
+						<!--<li><a href="{{ route('publications') }}">Publications</a></li>-->
 						<li><a href="{{ route('careers') }}">Careers</a></li>
 						<li><a href="{{route('contact-us')}}">Contact Us</a></li>
                         <li><a href="{{route('blog')}}">Blog</a></li>
@@ -27,7 +27,7 @@
 				<div class="ftr_box">
 					<h4>Practice Areas</h4>
 					<ul>
-                        @foreach (App\Models\PracticeArea::select('title','slug')->orderBy('title')->take(6)->get() as $practice_area)
+                        @foreach (App\Models\PracticeArea::select('title','slug')->orderBy('position')->take(6)->get() as $practice_area)
 						    <li><a href="{{ route('practice-area.show',$practice_area->slug) }}">{{ $practice_area->title }}</a></li>
                         @endforeach
 					</ul>

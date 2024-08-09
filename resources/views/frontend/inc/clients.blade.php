@@ -15,8 +15,12 @@
                     </div>
                     @endif
                     <div class="hm_clnt owl-carousel owl-theme">
-                        @foreach (App\Models\Client::get() as $client)
-                            <div class="item"><img src="{{asset($client->logo)}}" alt="{{ $client->title }}"></div>
+                        @foreach (App\Models\Client::where('featured',1)->orderBy('name')->get() as $client)
+                            <div class="item">
+                                <a href="{{ $client->url ?? '#'}}?website=gogralegal.com" target="_blank" rel="noopener noreferrer">
+                                    <img src="{{asset($client->logo)}}" alt="{{ $client->title }}">
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

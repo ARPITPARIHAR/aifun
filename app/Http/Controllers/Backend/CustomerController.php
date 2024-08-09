@@ -37,7 +37,8 @@ class CustomerController extends Controller
             'phone' => 'required|digits:10',
             'address' => 'required|string',
             'password' => 'required|min:6',
-            'password' => 'required|confirmed|min:6'
+            'password' => 'required|confirmed|min:6',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $user = new User;
         $user->user_type = 'customer';
@@ -46,6 +47,11 @@ class CustomerController extends Controller
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->password = Hash::make($request->password);
+        if ($request->hasFile('avatar')) {
+            $fileName = time() . '-avatar-' . $request->file('avatar')->getClientOriginalName();
+            $filePath = $request->file('avatar')->storeAs('uploads/customer', $fileName, 'public');
+            $user->avatar = '/public/storage/' . $filePath;
+        }
         if ($user->save()) {
             return back()->with('success', 'Customer added successfully.');
         } else {
@@ -81,7 +87,8 @@ class CustomerController extends Controller
             'phone' => 'required|digits:10',
             'address' => 'required|string',
             'password' => 'nullable|min:6',
-            'password' => 'nullable|confirmed|min:6'
+            'password' => 'nullable|confirmed|min:6',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $user = User::findOrFail(decrypt($id));
         $user->name = $request->name;
@@ -89,11 +96,28 @@ class CustomerController extends Controller
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->password = Hash::make($request->password);
+        if ($request->hasFile('avatar')) {
+            $fileName = time() . '-avatar-' . $request->file('avatar')->getClientOriginalName();
+            $filePath = $request->file('avatar')->storeAs('uploads/customer', $fileName, 'public');
+            $user->avatar = '/public/storage/' . $filePath;
+        }
         if ($user->save()) {
             return back()->with('success', 'Customer updated successfully.');
         } else {
             return back()->with('error', 'Something went wrong');
         }
+    }
+    public function activeDeactive(Request $request)
+    {
+        
+       $user = User::findOrFail(decrypt($request->id)); 
+       if($request->status){
+          $user->active = 1;
+       } else{
+          $user->active = 0;  
+       }
+       $user->update();
+       return $user->active;
     }
 
     /**

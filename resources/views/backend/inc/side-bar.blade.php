@@ -48,13 +48,13 @@
             <li class="">
                 <a href="{{ route('admin.contact.index') }}">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
-                    <span class="pcoded-mtext">{{ __('Contact Table') }}</span>
+                    <span class="pcoded-mtext">{{ __('Contact Queries') }}</span>
                 </a>
             </li>
             <li class="">
                 <a href="{{ route('admin.consult.index') }}">
                     <span class="pcoded-micon"><i class="feather icon-users"></i></span>
-                    <span class="pcoded-mtext">{{ __('Consult Table') }}</span>
+                    <span class="pcoded-mtext">{{ __('Online Consultancy') }}</span>
                 </a>
             </li>
 
@@ -71,12 +71,12 @@
                     </li>
                     <li class="">
                         <a href="{{ route('admin.cases.index') }}">
-                            <span class="pcoded-mtext">{{ __('Cases') }}</span>
+                            <span class="pcoded-mtext">{{ __('Case') }}</span>
                         </a>
                     </li>
                     <li class=" ">
                         <a href="{{ route('admin.billings.index') }}">
-                            <span class="pcoded-mtext">{{ __('Billings') }}</span>
+                            <span class="pcoded-mtext">{{ __('Billing') }}</span>
                         </a>
                     </li>
                 </ul>

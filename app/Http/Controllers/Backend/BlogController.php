@@ -33,12 +33,19 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
-            'brief_description' => 'required|string',
+            'title' => 'required|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'brief_description' => 'nullable|string',
+            'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $blog = new Blog;
+        $blog->title = $request->title;
+        $blog->meta_title = $request->meta_title;
+        $blog->meta_description = $request->meta_description;
         $blog->brief_description = $request->brief_description;
+        $blog->description = $request->description;
         if ($request->hasFile('image')) {
             $fileName = time() . '-slider-' . $request->file('image')->getClientOriginalName();
             $filePath = $request->file('image')->storeAs('uploads/blogs', $fileName, 'public');
@@ -71,14 +78,23 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $request->validate([
 
-            'brief_description' => 'required|string',
+            'title' => 'required|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'brief_description' => 'nullable|string',
+            'description' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $blog = Blog::findOrFail(decrypt($id));
 
+        $blog->title = $request->title;
+        $blog->meta_title = $request->meta_title;
+        $blog->meta_description = $request->meta_description;
         $blog->brief_description = $request->brief_description;
+        $blog->description = $request->description;
         if ($request->hasFile('image')) {
             $fileName = time() . '-slider-' . $request->file('image')->getClientOriginalName();
             $filePath = $request->file('image')->storeAs('uploads/blogs', $fileName, 'public');

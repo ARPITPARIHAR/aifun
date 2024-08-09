@@ -31,6 +31,7 @@
 						</div>
 						<div class="form-group">
 							<input class="form-control" type="password" name="password" placeholder="Password">
+							<a class="frgt" href="{{route('forgot-password')}}">Forgot your Password?</a>
 							@error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -78,8 +79,8 @@
                             @enderror
 						</div>
 						<div class="form-group" style="text-align: left;">
-							<input type="checkbox" id="rgstr" name="rgstr" value="0">
-							<label for="rgstr"> Register to our newsletter</label>
+							<input type="checkbox" id="newsletter" name="newsletter" value="1">
+							<label for="newsletter"> Register to our newsletter</label>
 						</div>
 						<div class="form-group">
                             <button type="submit" class="btn">Create Account</button>

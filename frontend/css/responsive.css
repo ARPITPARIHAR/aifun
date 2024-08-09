@@ -1,0 +1,178 @@
+
+@media screen and (max-width: 1380px) {
+
+
+}
+
+@media screen and (max-width: 1199px) {
+.cmpny_ovrvw .cmpny_imag img {
+  width: 100%;
+}
+.hm_ltst_updts .updts .updts_txt h2 {
+  font-size: 17px;
+  line-height: 23px;
+}
+footer .ftr_box .ftr_logo img {
+  width: 85%;
+}
+
+}
+
+@media screen and (max-width: 991px) {
+.header .topbar, .header .main_head {
+  padding: 12px 15px;
+}
+.header .topbar .social li a {
+  margin: 0;
+}	
+.header .topbar .cnslt a {
+  font-size: 14px;
+  padding: 6px 5px;
+}
+.header .main_head .menus .navbar .navbar-collapse .navbar-nav .close {
+  display: block;
+}
+.header .main_head .menus .navbar .navbar-collapse {
+  position: fixed;
+  background: #fff;
+  height: 100%;
+  width: 270px;
+  top: 0;
+  z-index: 11;
+  right: 0;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  box-shadow: 0px 0px 13px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0px 0px 13px rgba(0,0,0,0.2);
+}
+.header .main_head .menus .navbar .navbar-collapse .navbar-nav .close {
+  background: transparent;
+  border: 0;
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+  top: 0px;
+}
+.header .main_head .menus .navbar .navbar-collapse .navbar-nav {
+  padding: 40px 0 0;
+}
+.header .main_head .menus .navbar .navbar-collapse .navbar-nav .nav-item .nav-link {
+  font-size: 14px;
+  line-height: 23px;
+  padding: 0 20px 12px;
+}
+.bnr_slide.owl-carousel .item .itm_inr h2 {
+  font-size: 31px;
+}
+.cmpny_ovrvw .cmpny_text {
+  padding: 40px;
+}
+.cmpny_ovrvw .cmpny_text h2, .head h2 {
+  margin: 0 0 15px;
+}
+footer .ftr_box .ftr_logo img {
+  width: auto;
+}
+footer .ftr_box .ftr_logo {
+  text-align: center;
+}
+footer .ftr_box p {
+  margin: 0 0 30px;
+}
+footer .ftr_box h4 {
+  margin-bottom: 15px;
+}
+
+
+}
+
+@media screen and (max-width: 767px) {
+.header .topbar {
+  display: block;
+  text-align: center;
+}
+.header .topbar .mail, .header .topbar .srch, .header .topbar .cnslt {
+  margin: 0 0 12px;
+  display: inline-block;
+}
+.header .topbar .cnslt {
+  margin: 0 30px 0 0;
+}
+.header .topbar .social {
+  display: inline-block;	
+}
+.header .main_head {
+  padding: 12px 15px 0;	
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  position: relative;
+  top: 0;
+  border-radius: 0;
+}
+.logo img {
+  width: 67%;
+}
+.header .main_head .menus .navbar .navbar-toggler {
+  position: absolute;
+  top: -36px;
+  right: 0;
+}
+.bnr_slide.owl-carousel .item .itm_inr h2 {
+  font-size: 22px;
+}
+.cmpny_ovrvw .cmpny_text {
+  padding: 20px 0px;
+}
+.cmpny_ovrvw .cmpny_text h2, .head h2 {
+  font-size: 23px;
+}
+.hm_srvcs, .hm_ltst_updts, .hm_clnts {
+  margin: 40px 0 0;
+}
+.hm_ltst_updts .updts {
+  margin: 20px 0 0;
+}
+.hm_srvcs .srvc_bx {
+  margin: 0 0 12px;
+}
+.cmpny_ovrvw {
+  margin: 10px 0 0;
+  background: #f8f4f3;
+  padding: 15px 0;
+}
+footer {
+  padding: 40px 0 20px;
+  margin: 40px 0 0;
+}
+footer .ftr_box {
+  margin: 0 0 30px;
+}
+footer .ftr_box h4 {
+  margin-bottom: 15px;
+}
+footer .copyright {
+  padding: 30px 0 0;
+}
+.ptnt_rgstration {
+  margin: 40px 0 0;
+}
+.ptnt_rgstration .head h2 {
+  font-size: 21px;
+}
+.ptnt_rgstration .prsctn .prsctn_box {
+  margin: 0 0 40px;
+}
+.ptnt_rgstration .prsctn .prsctn_box h4 {
+  margin: 12px 0 9px;
+}
+.ptnt_rgstration .ptnt_rgstr h4 {
+  font-size: 19px;
+}
+.prctc {
+  margin: 40px 0 0;
+}
+.team {
+  margin: 40px 0 0;
+}
+
+}

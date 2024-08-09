@@ -32,6 +32,7 @@ Route::controller(PageController::class)->group(function () {
         Route::get('{id}/edit', 'edit')->name('edit');
         Route::post('{id}/edit', 'update')->name('update');
         Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::post('active-deactive', 'activeDeactive')->name('active-deactive');
     });
 });
 
@@ -54,6 +55,7 @@ Route::controller(PracticeAreaController::class)->group(function () {
         Route::get('{id}/edit', 'edit')->name('edit');
         Route::post('{id}/edit', 'update')->name('update');
         Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::post('active-deactive', 'activeDeactive')->name('active-deactive');
     });
 });
 
@@ -65,6 +67,7 @@ Route::controller(CustomerController::class)->group(function () {
         Route::get('{id}/edit', 'edit')->name('edit');
         Route::post('{id}/edit', 'update')->name('update');
         Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::post('active-deactive', 'activeDeactive')->name('active-deactive');
     });
 });
 
@@ -76,6 +79,7 @@ Route::controller(ClientController::class)->group(function () {
         Route::get('{id}/edit', 'edit')->name('edit');
         Route::post('{id}/edit', 'update')->name('update');
         Route::get('{id}/delete', 'destroy')->name('delete');
+        Route::post('featured', 'featured')->name('featured');
     });
 });
 

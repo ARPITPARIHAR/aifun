@@ -29,6 +29,41 @@
                     @csrf
 
                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Title') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" id="title" value="{{ old('title') ?? $blog->title }}" placeholder="{{ __('Enter Page Title') }}" class="form-control @error('title') form-control-danger @enderror">
+                           <span class="messages">
+                                @error('title')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                    <p class="text-muted">{{ __('If you want to give a title other than your name then') }}</p>
+                                @enderror
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Meta Title') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') ?? $blog->meta_title }}" placeholder="{{ __('Enter Meta Title') }}" class="form-control @error('meta_title') form-control-danger @enderror">
+                            @error('meta_title')
+                                <p class="text-danger error">{{ $message }}</p>
+                            @else
+                                <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Meta Description') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="meta_description" id="meta_description" value="{{ old('meta_description') ?? $blog->meta_description }}" placeholder="{{ __('Enter Meta Description') }}" class="form-control @error('meta_description') form-control-danger @enderror">
+                            @error('meta_description')
+                                <p class="text-danger error">{{ $message }}</p>
+                            @else
+                                <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Brief Description') }}</label>
                         <div class="col-sm-10">
                             <textarea name="brief_description" id="brief_description" placeholder="{{ __('Enter Brief Description') }}" class="form-control @error('brief_description') form-control-danger @enderror">{{ old('brief_description') ?? $blog->brief_description }}</textarea>
@@ -44,6 +79,17 @@
                         <div class="col-sm-10">
                             <input type="file" name="image" id="image" class="form-control @error('image') form-control-danger @enderror">
                             @error('image')
+                                <p class="text-danger error">{{ $message }}</p>
+                            @else
+                                <p class="text-muted">{{ __('') }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
+                        <div class="col-sm-10">
+                            <textarea name="description" id="description" placeholder="{{ __('Enter Description') }}" class="form-control @error('description') form-control-danger @enderror">{{ old('description') ?? $blog->description }}</textarea>
+                            @error('description')
                                 <p class="text-danger error">{{ $message }}</p>
                             @else
                                 <p class="text-muted">{{ __('') }}</p>

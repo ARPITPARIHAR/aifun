@@ -26,7 +26,11 @@
             @foreach (App\Models\Team::get() as $member)
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="team-box">
-                        <div class="team-imag"><img src="{{asset($member->thumbnail_img)}}" alt="team"></div>
+                        <div class="team-imag">
+                            <a href="{{route('about-team',$member->slug)}}" >
+                                <img src="{{asset($member->thumbnail_img)}}" alt="team">
+                            </a>
+                        </div>
                         <h4>{{ $member->name }}</h4>
                         <span>{{ $member->designation }}</span>
                         <p>{{ $member->brief_description }}</p>

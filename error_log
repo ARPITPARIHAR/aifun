@@ -1,0 +1,1 @@
+[27-Jul-2024 03:17:24 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\Frontend\PageController::blog() in /home/gogralegal/public_html/app/Http/Controllers/Frontend/PageController.php on line 25

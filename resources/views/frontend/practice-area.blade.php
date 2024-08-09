@@ -19,11 +19,11 @@
 		<div class="row">
 			<div class="col-lg-5 col-md-12">
 				<div class="cmpny_imag">
-					<img src="{{$practice_area->thumbnail_img}}" alt="cmpny_imag">
+					<img src="{{$practice_area->thumbnail_img}}" alt="{{$practice_area->title}}">
 				</div>
 			</div>
 			<div class="col-lg-7 col-md-12">
-				<div class="cmpny_text">
+				<div class="">
 					<span>{{$practice_area->title}}</span>
 					{!!$practice_area->description!!}
 				</div>
@@ -48,7 +48,11 @@
                     @endif
                     <div class="hm_clnt owl-carousel owl-theme">
                         @foreach (App\Models\Client::where('practice_id',$practice_area->id)->get() as $client)
-                            <div class="item"><img src="{{asset($client->logo)}}" alt="{{ $client->title }}"></div>
+                            <div class="item">
+                                <a href="{{ $client->url ?? '#'}}?website=gogralegal.com" target="_blank" rel="noopener noreferrer">
+                                    <img src="{{asset($client->logo)}}" alt="{{ $client->title }}">
+                                </a>
+                            </div>
                         @endforeach
                     </div>
                 </div>

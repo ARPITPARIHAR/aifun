@@ -24,7 +24,7 @@
                @endsession
             </div>
             <div class="card-block">
-                <form action="{{ route('admin.billings.update',encrypt($billing->id)) }}" method="POST">
+                <form action="{{ route('admin.billings.update',encrypt($billing->id)) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Customer') }}</label>
@@ -87,6 +87,17 @@
                                     {{-- <p class="text-muted">{{ __("Leave it blank if you don't want to insert it on any page.") }}</p> --}}
                                 @enderror
                             </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Upload File ') }}</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="file" class="form-control-file @error('file') is-invalid @enderror">
+                            @error('file')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">

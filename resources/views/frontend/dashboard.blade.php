@@ -42,11 +42,26 @@
 					<div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="v-pills-first" role="tabpanel" aria-labelledby="v-pills-first-tab">
 							<div class="dshbrd_dtls">
-								@session('success')
-                                    <h2 class="text-success">{{ __('Profile updated successfully') }}</h2>
-                                @else
-                                    <h2>Dashbaord</h2>
-                                @endsession
+								
+                                 @if(auth()->user()->avatar)
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="srvc_icn">
+        						              <div class="icn_inr">
+                                                  <img src="{{asset(auth()->user()->avatar)}}" alt="" width="100"  >
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @session('success')
+                                                <h2 class="text-success">{{ __('Profile updated successfully') }}</h2>
+                                            @else
+                                                <h2>Welcome {{auth()->user()->name}}</h2>
+                                            @endsession
+                                        </div>
+                                        
+                                    </div>
+                                @endif
 							</div>
 						</div>
 						<div class="tab-pane fade" id="v-pills-second" role="tabpanel" aria-labelledby="v-pills-second-tab">
@@ -144,6 +159,7 @@
                                                     <th>#</th>
                                                     <th>{{ __('Title') }}</th>
                                                     <th>{{ __('Description') }}</th>
+                                                    <th>{{ __('File') }}</th>
                                                     <th>{{ __('Status') }}</th>
                                                 </tr>
                                             </thead>
@@ -153,6 +169,9 @@
                                                     <td>{{ $key+1 }}</td>
                                                     <td>{{ $case->title }}</td>
                                                     <td>{{ $case->description }}</td>
+                                                    <td>
+                                                        <a href="{{ asset($case->image) }}" download="{{ date('YmdhHis',strtotime($case->created_at)) }}">Download File</a>
+                                                    </td>
                                                     <td>{{ Str::headline($case->status) }}</td>
                                                 </tr>
                                                 @endforeach
@@ -176,6 +195,7 @@
                                                     <th>{{ __('Description') }}</th>
                                                     <th>{{ __('Amount') }}</th>
                                                     <th>{{ __('Payment Mode') }}</th>
+                                                    <th>{{ __('File') }}</th>
                                                     <th>{{ __('Payment Date') }}</th>
                                                 </tr>
                                             </thead>
@@ -186,6 +206,9 @@
                                                     <td>{{ $case->description }}</td>
                                                     <td>{{ format_price($case->amount) }}</td>
                                                     <td>{{ Str::headline($case->payment_mode) }}</td>
+                                                    <td>
+                                                        <a href="{{ asset($billing->image) }}" download="{{ date('YmdhHis',strtotime($billing->created_at)) }}">Download File</a>
+                                                    </td>
                                                     <td>{{ date('d-m-Y',strtotime($case->payment_date)) }}</td>
                                                 </tr>
                                                 @endforeach

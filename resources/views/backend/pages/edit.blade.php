@@ -70,6 +70,18 @@
                             </span>
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">{{ __('Position') }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="position" id="position" value="{{ old('position') ?? $page->position }}" placeholder="{{ __('Enter Page Position') }}" class="form-control @error('position') form-control-danger @enderror">
+                           <span class="messages">
+                                @error('position')
+                                    <p class="text-danger error">{{ $message }}</p>
+                                @else
+                                @enderror
+                            </span>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Meta Title') }}</label>
                         <div class="col-sm-10">

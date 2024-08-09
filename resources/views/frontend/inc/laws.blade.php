@@ -6,7 +6,7 @@
 				<div class="srvc_bx">
 					<div class="srvc_icn">
 						<div class="icn_inr">
-							<img src="{{asset($law->icon)}}" alt="hm_srvc">
+							<img src="{{asset($law->icon)}}" alt="{{ $law->title }}">
 						</div>
 					</div>
 					<div class="srvc_txt">

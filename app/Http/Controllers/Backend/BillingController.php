@@ -43,6 +43,12 @@ class BillingController extends Controller
         $bill->description = $request->description;
         $bill->payment_date = $request->payment_date;
         $bill->payment_mode = $request->payment_mode;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '-billing-file-' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/documents', $fileName, 'public');
+            $bill->image = '/public/storage/' . $filePath;
+        }
         if ($bill->save()) {
             return back()->with('success', 'Billing added successfully.');
         } else {
@@ -86,6 +92,12 @@ class BillingController extends Controller
         $bill->description = $request->description;
         $bill->payment_date = $request->payment_date;
         $bill->payment_mode = $request->payment_mode;
+         if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '-billing-file-' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/documents', $fileName, 'public');
+            $bill->image = '/public/storage/' . $filePath;
+        }
         if ($bill->update()) {
             return back()->with('success', 'Billing updated successfully.');
         } else {

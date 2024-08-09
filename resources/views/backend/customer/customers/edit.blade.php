@@ -24,7 +24,7 @@
                @endsession
             </div>
             <div class="card-block">
-                <form action="{{ route('admin.customers.update',encrypt($user->id)) }}" method="POST">
+                <form action="{{ route('admin.customers.update',encrypt($user->id)) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
