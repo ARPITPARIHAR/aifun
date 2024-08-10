@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/gogralegal/public_html/
+    - export DEPLOYPATH=/home/gogralegal/public_html/gogralegal.com
     - /bin/cp -r * $DEPLOYPATH
