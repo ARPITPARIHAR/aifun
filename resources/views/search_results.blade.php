@@ -16,13 +16,13 @@
                             @if($model == 'practice_areas')
                                 <a href="{{ route('practice-area.show', ['slug' => urlencode($row->slug)]) }}">{{ $row->title }}</a>
                             @elseif($model == 'case_studies')
-                                <a href="{{ route('case-studies.show', $row->id) }}">{{ $row->title }}</a>
-                            @elseif($model == 'blogs')
-                                <a href="{{ route('blog-details', ['slug' => urlencode($row->slug)]) }}">{{ $row->title }}</a>
+                                <a href="{{ route('home', $row->id) }}">{{ $row->title }}</a>
+                            {{-- @elseif($model == 'blogs')
+                                <a href="{{ route('blog-details', ['slug' => urlencode($row->slug)]) }}">{{ $row->title }}</a> --}}
                             @elseif($model == 'laws')
                                 <a href="{{ route('home', $row->id) }}">{{ $row->title }}</a>
                             @elseif($model == 'clients')
-                                <a href="{{ route('clients.show', $row->id) }}">{{ $row->name }}</a>
+                                <a href="{{ route('home', $row->id) }}">{{ $row->name }}</a>
                             @else
                                 {{ $row->title ?? $row->name }}
                             @endif
