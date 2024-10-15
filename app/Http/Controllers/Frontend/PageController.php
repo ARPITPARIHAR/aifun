@@ -17,29 +17,27 @@ class PageController extends Controller
     public function __construct()
     {
         $this->apiKey = env('YOUTUBE_API_KEY'); // Get the API key from environment variables
-        $this->channelId = '@AiFunFactory1221'; // Your channel ID (AiFunFactory1221)
+        $this->channelId = 'UC2vKJ1bY0KfU8sYY4h8W5sA'; // Your channel ID (AiFunFactory1221)
     }
 
     public function home(Request $request)
     {
-        // Fetch videos from YouTube channel
+        // Fetch videos from YouTube channel without SSL verification
         $url = "https://www.googleapis.com/youtube/v3/search?key={$this->apiKey}&channelId={$this->channelId}&part=snippet&type=video&maxResults=10";
 
-        $response = Http::withOptions(['verify' => false])->get($url); // Disable SSL verification
+        // Set verify to false to bypass SSL certificate verification
+        $response = Http::withOptions(['verify' => false])->get($url);
 
-        $videos = []; // Initialize videos array
+        $videos = [];
 
         if ($response->successful()) {
-            $videos = $response->json()['items']; // Get videos if request is successful
+            $videos = $response->json()['items'];
         } else {
             // Handle error if needed, maybe log it or set a message
-            \Log::error('YouTube API request failed', ['response' => $response->body()]); // Log the error for debugging
-            session()->flash('error', 'Could not fetch videos. Please try again later.'); // Set flash error message
         }
 
-        return view('frontend.home', ['videos' => $videos]); // Pass videos to the view
+        return view('frontend.home', ['videos' => $videos]);
     }
-
     public function contact_us(Request $request)
     {
         return view('frontend.contact');

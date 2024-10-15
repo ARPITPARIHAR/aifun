@@ -107,7 +107,7 @@
 </head>
 <body>
     <!-- Header -->
-    
+
 
     <!-- Search Bar -->
     <div class="search-bar">
@@ -119,45 +119,23 @@
 
     <!-- Main Video Player -->
     <div class="main-video">
-        <iframe id="mainVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        <iframe id="mainVideo" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <!-- Video Grid -->
     <div class="container">
         <div class="video-grid" id="videoGrid">
-            <!-- Video items will be dynamically inserted here -->
+            @foreach($videos as $video)
+                <div class="video-item" onclick="playVideo('{{ $video['id']['videoId'] }}')">
+                    <img src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
+                    <div class="video-info">
+                        <h4 class="video-title">{{ $video['snippet']['title'] }}</h4>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-
     <script>
-        const apiKey = 'YOUR_API_KEY'; // Replace with your YouTube API key
-        const channelId = 'UCXXXXXXX'; // Replace with your YouTube Channel ID
-
-        // Fetch videos from the YouTube channel
-        fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet&type=video&maxResults=10`)
-            .then(response => response.json())
-            .then(data => {
-                const videoGrid = document.getElementById('videoGrid');
-                data.items.forEach(item => {
-                    const videoId = item.id.videoId;
-                    const thumbnail = item.snippet.thumbnails.high.url;
-                    const title = item.snippet.title;
-
-                    // Create video item element
-                    const videoItem = document.createElement('div');
-                    videoItem.className = 'video-item';
-                    videoItem.onclick = () => playVideo(videoId);
-                    videoItem.innerHTML = `
-                        <img src="${thumbnail}" alt="Video Thumbnail">
-                        <div class="video-info">
-                            <h4 class="video-title">${title}</h4>
-                        </div>
-                    `;
-                    videoGrid.appendChild(videoItem);
-                });
-            })
-            .catch(error => console.error('Error fetching videos:', error));
-
         function playVideo(videoId) {
             document.getElementById('mainVideo').src = `https://www.youtube.com/embed/${videoId}`;
         }
