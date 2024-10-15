@@ -31,7 +31,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         @foreach (App\Models\Page::where('parent_id',2)->where('active',1)->orderBy('position')->get() as $page)
-                                            <li><a class="dropdown-item" href="{{ route('about-us', $page->slug) }}">{{ Str::headline($page->name) }}</a></li>
+                                            <li><a class="dropdown-item" href="">{{ Str::headline($page->name) }}</a></li>
                                         @endforeach
                                     </ul>
                                 </li>
