@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
+
 class PageController extends Controller
 {
     protected $apiKey;
@@ -16,7 +17,7 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->apiKey = env('YOUTUBE_API_KEY'); // Get the new API key from environment variables
+        $this->apiKey = env('YOUTUBE_API_KEY'); // Get the API key from environment variables
         $this->channelId = 'UCzKdlgjlMgQustU3-7WsIzQ'; // Ensure this is the correct channel ID
     }
 
@@ -32,6 +33,31 @@ class PageController extends Controller
 
         if ($response->successful()) {
             $videos = $response->json()['items'];
+
+            // Create an array to hold the video statistics
+            $videoStatistics = [];
+
+            // Fetch statistics for each video
+            foreach ($videos as $video) {
+                $videoId = $video['id']['videoId'];
+                $statsResponse = Http::withOptions(['verify' => false])->get("https://www.googleapis.com/youtube/v3/videos", [
+                    'part' => 'statistics',
+                    'id' => $videoId,
+                    'key' => $this->apiKey,
+                ]);
+
+                // Check if we have statistics in the response
+                if ($statsResponse->successful() && $statsResponse->json()['items']) {
+                    $statistics = $statsResponse->json()['items'][0]['statistics'];
+                    $videoStatistics[$videoId] = $statistics;
+                }
+            }
+
+            // Merge statistics with video data
+            foreach ($videos as &$video) {
+                $videoId = $video['id']['videoId'];
+                $video['statistics'] = $videoStatistics[$videoId] ?? []; // Default to an empty array if no stats
+            }
         } else {
             // Log the error details for debugging
             \Log::error('YouTube API Error: ' . $response->status() . ' - ' . $response->body());
@@ -39,7 +65,6 @@ class PageController extends Controller
 
         return view('frontend.home', ['videos' => $videos]);
     }
-
     public function contact_us(Request $request)
     {
         return view('frontend.contact');

@@ -7,11 +7,65 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
-        }
-        .header {
+      /* General Styles */
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for videos...">
+            <button type="button"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <!-- Main Video Player -->
+    <div class="main-video">
+        <iframe id="mainVideo" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video Grid -->
+    {{-- <div class="video-list">
+        @foreach($videos as $video)
+            <div class="video-item">
+                <h3>{{ $video['snippet']['title'] }}</h3>
+                <img src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
+                <p>{{ $video['snippet']['description'] }}</p>
+            </div>
+        @endforeach
+    </div> --}}
+    <div class="container">
+        <div class="video-grid" id="videoGrid">
+            @foreach($videos as $video)
+                <div class="video-item" onclick="playVideo('{{ $video['id']['videoId'] }}')">
+                    <img class="video-thumbnail" src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
+                    <div class="video-info">
+                        <h4 class="video-title">{{ $video['snippet']['title'] }}</h4>
+                        <div class="video-details">
+                            <span class="channel-name">{{ $video['snippet']['channelTitle'] }}</span>
+                            <span class="video-time">{{ \Carbon\Carbon::parse($video['snippet']['publishedAt'])->diffForHumans() }}</span>
+                            <span class="video-views">{{ number_format($video['statistics']['viewCount']) }} views</span>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+
+
+    <style>
+      /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.header {
             background-color: #003f62;
             color: white;
             padding: 10px 0;
@@ -58,7 +112,7 @@
         .search-container button:hover {
             background-color: #004f82;
         }
-        .main-video {
+/* Container for the grid */.main-video {
             margin: 20px 0;
             text-align: center;
         }
@@ -67,82 +121,88 @@
             height: 450px;
             max-width: 800px;
         }
-        .video-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .video-item {
-            flex: 1 1 calc(25% - 20px);
-            max-width: calc(25% - 20px);
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-        }
-        .video-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        .video-item h4 {
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-        @media (max-width: 768px) {
-            .video-item {
-                flex: 1 1 calc(50% - 20px);
-                max-width: calc(50% - 20px);
-            }
-        }
-        @media (max-width: 576px) {
-            .video-item {
-                flex: 1 1 100%;
-                max-width: 100%;
-            }
-        }
+.container {
+    max-width: 100%; /* Full width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the container */
+}
+
+/* Grid styles */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjusted to minimum width */
+    gap: 15px; /* Space between grid items */
+}
+
+/* Individual video item styles */
+.video-item {
+    background-color: #fff; /* White background for items */
+    border: 1px solid #ddd; /* Light border around video items */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Ensure content doesn't overflow */
+    cursor: pointer; /* Change cursor on hover */
+    transition: transform 0.2s; /* Smooth scaling effect */
+    display: flex;
+    flex-direction: column; /* Stack thumbnail and info vertically */
+}
+
+.video-item:hover {
+    transform: scale(1.02); /* Slightly enlarge the item on hover */
+}
+
+/* Video thumbnail */
+.video-thumbnail {
+    width: 100%; /* Make thumbnail responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Video info styles */
+.video-info {
+    padding: 10px; /* Padding inside the video item */
+    flex-grow: 1; /* Allow this to grow */
+}
+
+.video-title {
+    font-size: 1.1em; /* Slightly larger title font */
+    margin: 0; /* Remove default margin */
+    color: #333; /* Dark color for title */
+}
+
+.video-details {
+    display: flex; /* Flexbox for details */
+    justify-content: space-between; /* Space between details */
+    font-size: 0.9em; /* Smaller font for details */
+    color: #666; /* Lighter color for details */
+}
+
+/* Individual detail styles */
+.channel-name, .video-time, .video-views {
+    margin: 0; /* Remove default margin */
+}
+
+/* Media Queries for Responsive Adjustments */
+@media (min-width: 600px) {
+    .video-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Wider items on larger screens */
+    }
+}
+
+@media (min-width: 900px) {
+    .video-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Even wider items on larger screens */
+    }
+}
+
     </style>
-</head>
-<body>
-    <!-- Header -->
 
+    <script>
+        function playVideo(videoId) {
+            // Logic to play the video (e.g., open in modal, redirect, etc.)
+            console.log("Playing video with ID:", videoId);
+            // You can implement the video playing logic here
+        }
+    </script>
 
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-container">
-            <input type="text" id="search" placeholder="Search for videos...">
-            <button type="button"><i class="fas fa-search"></i></button>
-        </div>
-    </div>
-
-    <!-- Main Video Player -->
-    <div class="main-video">
-        <iframe id="mainVideo" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
-    </div>
-
-    <!-- Video Grid -->
-    <div class="video-list">
-        @foreach($videos as $video)
-            <div class="video-item">
-                <h3>{{ $video['snippet']['title'] }}</h3>
-                <img src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
-                <p>{{ $video['snippet']['description'] }}</p>
-            </div>
-        @endforeach
-    </div>
-    <div class="container">
-        <div class="video-grid" id="videoGrid">
-            @foreach($videos as $video)
-                <div class="video-item" onclick="playVideo('{{ $video['id']['videoId'] }}')">
-                    <img src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
-                    <div class="video-info">
-                        <h4 class="video-title">{{ $video['snippet']['title'] }}</h4>
-                    </div>
-                </div>
-            @endforeach
-        </div>
     </div>
     <script>
         function playVideo(videoId) {
