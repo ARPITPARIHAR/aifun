@@ -35,8 +35,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('page/{slug}', 'show')->name('pages.show');
     Route::get('blog', 'blog')->name('blog');
      Route::get('blog/{slug}', 'blogDetail')->name('blog-details');
-    Route::get('is-disclaimer', 'disclaimer')->name('is-disclaimer')->withoutMiddleware([isDisclaimer::class]);
-    Route::post('is-disclaimer', 'acceptDisclaimer')->name('accept-disclaimer')->withoutMiddleware([isDisclaimer::class]);
+    // Route::get('is-disclaimer', 'disclaimer')->name('is-disclaimer')->withoutMiddleware([isDisclaimer::class]);
+    // Route::post('is-disclaimer', 'acceptDisclaimer')->name('accept-disclaimer')->withoutMiddleware([isDisclaimer::class]);
 });
 
 Route::controller(PracticeAreaController::class)->group(function () {

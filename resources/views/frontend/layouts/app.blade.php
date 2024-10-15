@@ -29,7 +29,7 @@
 @include('frontend.inc.header')
     @yield('content')
 @include('frontend.inc.footer')
-<div class="modal fade" id="disclaimer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-keyboard="false"  data-bs-backdrop='static' aria-hidden="true">
+{{-- <div class="modal fade" id="disclaimer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" data-keyboard="false"  data-bs-backdrop='static' aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
 
@@ -60,7 +60,7 @@
         </form>
       </div>
     </div>
-</div>
+</div> --}}
 <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
 <script src="{{asset('frontend/js/popper.min.js')}}"></script>
 <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
