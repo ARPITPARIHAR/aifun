@@ -123,6 +123,15 @@
     </div>
 
     <!-- Video Grid -->
+    <div class="video-list">
+        @foreach($videos as $video)
+            <div class="video-item">
+                <h3>{{ $video['snippet']['title'] }}</h3>
+                <img src="{{ $video['snippet']['thumbnails']['high']['url'] }}" alt="Video Thumbnail">
+                <p>{{ $video['snippet']['description'] }}</p>
+            </div>
+        @endforeach
+    </div>
     <div class="container">
         <div class="video-grid" id="videoGrid">
             @foreach($videos as $video)

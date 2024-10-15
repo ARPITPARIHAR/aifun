@@ -16,16 +16,16 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->apiKey = env('YOUTUBE_API_KEY'); // Get the API key from environment variables
-        $this->channelId = 'UC2vKJ1bY0KfU8sYY4h8W5sA'; // Your channel ID (AiFunFactory1221)
+        $this->apiKey = env('YOUTUBE_API_KEY'); // Get the new API key from environment variables
+        $this->channelId = 'UCzKdlgjlMgQustU3-7WsIzQ'; // Ensure this is the correct channel ID
     }
 
     public function home(Request $request)
     {
-        // Fetch videos from YouTube channel without SSL verification
+        // Fetch videos from YouTube channel
         $url = "https://www.googleapis.com/youtube/v3/search?key={$this->apiKey}&channelId={$this->channelId}&part=snippet&type=video&maxResults=10";
 
-        // Set verify to false to bypass SSL certificate verification
+        // Ignore SSL certificate verification (only for development, not recommended for production)
         $response = Http::withOptions(['verify' => false])->get($url);
 
         $videos = [];
@@ -33,11 +33,13 @@ class PageController extends Controller
         if ($response->successful()) {
             $videos = $response->json()['items'];
         } else {
-            // Handle error if needed, maybe log it or set a message
+            // Log the error details for debugging
+            \Log::error('YouTube API Error: ' . $response->status() . ' - ' . $response->body());
         }
 
         return view('frontend.home', ['videos' => $videos]);
     }
+
     public function contact_us(Request $request)
     {
         return view('frontend.contact');
