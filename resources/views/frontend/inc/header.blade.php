@@ -44,7 +44,7 @@
                                         @endforeach
                                     </ul>
                                 </li> --}}
-                                <li class="nav-item"><a class="nav-link" href="{{ route('team') }}">Faceswap</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('faceswap') }}">Faceswap</a></li>
                                 <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a></li>
                                 @if (auth()->user())

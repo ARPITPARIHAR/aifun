@@ -18,7 +18,7 @@ class PageController extends Controller
     public function __construct()
     {
         $this->apiKey = env('YOUTUBE_API_KEY'); // Get the API key from environment variables
-        $this->channelId = 'UCzKdlgjlMgQustU3-7WsIzQ'; // Ensure this is the correct channel ID
+        $this->channelId = 'UCKyuHMy_8UNUAEkuV1s2zfw'; // Ensure this is the correct channel ID
     }
 
     public function home(Request $request)

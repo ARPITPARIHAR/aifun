@@ -5,9 +5,11 @@ use App\Http\Middleware\isCustomer;
 use App\Http\Middleware\isDisclaimer;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\FaceController;
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\WebhookController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\CustomerController;
@@ -64,3 +66,8 @@ Route::get('onlineconsulant', [OnlineConsultantController::class, 'view'])->name
 Route::post('/consultation-form', [OnlineConsultantController::class, 'store'])->name('onlineconsulant.store');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/faceswap', [FaceController::class, 'index'])->name('faceswap');
+
+
+// Ensure you have this for form submission
+Route::post('/api/webhook', [WebhookController::class, 'handleWebhook']);

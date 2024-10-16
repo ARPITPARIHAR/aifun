@@ -207,7 +207,7 @@ body {
      function searchVideos() {
     const query = document.getElementById('search').value.trim();
     const apiKey = '{{ env('YOUTUBE_API_KEY') }}'; // Ensure you have the API key in your Blade file
-    const channelId = 'UCzKdlgjlMgQustU3-7WsIzQ'; // Your channel ID
+    const channelId = 'UCKyuHMy_8UNUAEkuV1s2zfw'; // Your channel ID
     const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet&type=video&maxResults=10&q=${encodeURIComponent(query)}`;
 
     // Fetch videos from YouTube API
