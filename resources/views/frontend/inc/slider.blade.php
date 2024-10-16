@@ -12,17 +12,16 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
 
 
-    <!-- Search Bar -->
+
+
     <div class="search-bar">
         <div class="search-container">
-            <input type="text" id="search" placeholder="Search for videos...">
-            <button type="button"><i class="fas fa-search"></i></button>
+            <input type="text" id="search" placeholder="Search for videos..." onkeyup="searchVideos()">
+            <button type="button" onclick="searchVideos()"><i class="fas fa-search"></i></button>
         </div>
     </div>
-
     <!-- Main Video Player -->
     <div class="main-video">
         <iframe id="mainVideo" src="https://www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
@@ -205,10 +204,81 @@ body {
 
     </div>
     <script>
-        function playVideo(videoId) {
-            document.getElementById('mainVideo').src = `https://www.youtube.com/embed/${videoId}`;
-        }
+     function searchVideos() {
+    const query = document.getElementById('search').value.trim();
+    const apiKey = '{{ env('YOUTUBE_API_KEY') }}'; // Ensure you have the API key in your Blade file
+    const channelId = 'UCzKdlgjlMgQustU3-7WsIzQ'; // Your channel ID
+    const url = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet&type=video&maxResults=10&q=${encodeURIComponent(query)}`;
+
+    // Fetch videos from YouTube API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const videoGrid = document.getElementById('videoGrid');
+            videoGrid.innerHTML = ''; // Clear previous results
+
+            // Check if there are any items
+            if (data.items && data.items.length > 0) {
+                data.items.forEach(video => {
+                    // Create video item elements
+                    const videoItem = document.createElement('div');
+                    videoItem.className = 'video-item';
+                    videoItem.onclick = () => playVideo(video.id.videoId); // Add play functionality
+
+                    const thumbnail = document.createElement('img');
+                    thumbnail.className = 'video-thumbnail';
+                    thumbnail.src = video.snippet.thumbnails.high.url;
+                    thumbnail.alt = video.snippet.title;
+
+                    const videoInfo = document.createElement('div');
+                    videoInfo.className = 'video-info';
+
+                    const title = document.createElement('h4');
+                    title.className = 'video-title';
+                    title.innerText = video.snippet.title;
+
+                    const details = document.createElement('div');
+                    details.className = 'video-details';
+
+                    const channelName = document.createElement('span');
+                    channelName.className = 'channel-name';
+                    channelName.innerText = video.snippet.channelTitle;
+
+                    const publishedAt = document.createElement('span');
+                    publishedAt.className = 'video-time';
+                    publishedAt.innerText = new Date(video.snippet.publishedAt).toLocaleDateString();
+
+                    // Append details to video item
+                    details.appendChild(channelName);
+                    details.appendChild(publishedAt);
+                    videoInfo.appendChild(title);
+                    videoInfo.appendChild(details);
+                    videoItem.appendChild(thumbnail);
+                    videoItem.appendChild(videoInfo);
+
+                    // Append video item to the grid
+                    videoGrid.appendChild(videoItem);
+                });
+            } else {
+                videoGrid.innerHTML = '<p>No videos found.</p>'; // Display a message if no results
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error);
+        });
+}
+
+function playVideo(videoId) {
+    const mainVideo = document.getElementById('mainVideo');
+    // Update the iframe source to the selected video
+    mainVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`; // Autoplay the video
+}
+
+
     </script>
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>

@@ -6,9 +6,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12 no_padding">
-				<div class="inr_bnr">
-					<img src="{{asset('frontend/images/banner_inner.jpg')}}" alt="bnr">
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -21,7 +19,7 @@
 				<div class="head text-center">
 					<span>Contact</span>
 					<h2>Contact Us</h2>
-					<p>{{businessSetting(1)->brief_description}}</p>
+
 				</div>
 			</div>
 			<div class="col-lg-6">
@@ -31,7 +29,7 @@
 					</div>
 					<div class="cntct_txt">
 						<h4>Phone Number</h4>
-						<p>{{businessSetting(1)->contact_numbers}}</p>
+						<p></p>
 					</div>
 				</div>
 				<div class="cntct_box">
@@ -40,7 +38,7 @@
 					</div>
 					<div class="cntct_txt">
 						<h4>Email ID</h4>
-						<p>{{businessSetting(1)->email}}</p>
+						<p></p>
 					</div>
 				</div>
 				<div class="cntct_box">
@@ -49,7 +47,7 @@
 					</div>
 					<div class="cntct_txt">
 						<h4>Adress</h4>
-						<p>{{businessSetting(1)->address}}</p>
+						<p></p>
 					</div>
 				</div>
 			</div>

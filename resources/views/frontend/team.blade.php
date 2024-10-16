@@ -1,56 +1,27 @@
 @extends('frontend.layouts.app')
-@section('meta_title','Team | '.env('APP_NAME'))
-@section('meta_description','Gogra Legal')
+
 @section('content')
-<section class="inner_banner">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12 no_padding">
-				<div class="inr_bnr">
-					<img src="{{asset('frontend/images/banner_inner.jpg')}}" alt="bnr">
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="team">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="head text-center">
-					<span>Team</span>
-					<h2>Our Team</h2>
-				</div>
-			</div>
-            @foreach (App\Models\Team::get() as $member)
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="team-box">
-                        <div class="team-imag">
-                            <a href="{{route('about-team',$member->slug)}}" >
-                                <img src="{{asset($member->thumbnail_img)}}" alt="team">
-                            </a>
-                        </div>
-                        <h4>{{ $member->name }}</h4>
-                        <span>{{ $member->designation }}</span>
-                        <p>{{ $member->brief_description }}</p>
-                        {{-- <ul>
-                            <li><a href="#"><img src="{{asset('frontend/images/hdr_scl001.png')}}"></a></li>
-                            <li><a href="#"><img src="{{asset('frontend/images/hdr_scl002.png')}}"></a></li>
-                        </ul> --}}
-                    </div>
-                </div>
-            @endforeach
-		</div>
-	</div>
-</section>
+    <section class="face-swap">
+        <h1>Face Swap Tool</h1>
+        <iframe
+            src="https://www.artificialstudio.ai/tools/face-swap"
+            width="100%"
+            height="600"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+    </section>
 @endsection
-@section('modal')
 
-@endsection
-@section('scripts')
+<style>
+    .face-swap {
+        text-align: center; /* Center the content */
+        margin: 20px; /* Add some margin */
+    }
 
-@endsection
-@section('styles')
-
-@endsection
+    iframe {
+        border: none; /* Remove the default border */
+        width: 100%; /* Full width */
+        height: 600px; /* Height of the iframe */
+    }
+</style>

@@ -26,7 +26,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/', 'home')->name('home') ;
     Route::get('contact-us', 'contact_us')->name('contact-us');
     Route::get('about-us/{slug}', 'about_us')->name('about-us');
-    Route::get('team', 'team')->name('team');
+    Route::get('faceswap', 'team')->name('team');
     Route::get('team/{slug}', 'aboutTeam')->name('about-team');
     Route::get('login-register', 'login_register')->name('login-register');
     Route::get('lawyers', 'lawyers')->name('lawyers');

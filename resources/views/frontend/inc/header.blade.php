@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3 d-flex justify-content-center">
                 <div class="logo" style="font-size: 1.5rem; font-weight: bold; color: white;">
-                    <a href="/home" style="color: white; text-decoration: none;">AIFUNFACTORY</a>
+                    <a href="/" style="color: white; text-decoration: none;">AIFUNFACTORY</a>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9">
@@ -44,9 +44,9 @@
                                         @endforeach
                                     </ul>
                                 </li> --}}
-                                <li class="nav-item"><a class="nav-link" href="">Team</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('team') }}">Faceswap</a></li>
                                 <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('contact-us') }}">Contact</a></li>
                                 @if (auth()->user())
                                     <li class="nav-item"><a class="nav-link" href="@if(auth()->user()->user_type=='admin'){{ route('admin.dashboard') }}@else {{ route('customer.dashboard') }}@endif">Dashboard</a></li>
                                 @else
